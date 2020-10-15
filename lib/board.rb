@@ -6,22 +6,31 @@ class Board
     3.times do |i|
       line = []
       3.times do |j|
-        line << Case.new()
+        line << Case.new("#{(i+65).chr}#{(j+49).chr}")
+        
       end
       @cases << line
+     
     end
+    
+  end
+
+  def recuperer_case_nom(nom)
+    if nom == "" then return nil end
+    @cases.flatten.each {|c| if c.name == nom then return c end} 
   end
 
   def winner? 
     winner = " "
-    winner = check_horizontal
-    winner = check_vertical
-    winner = check_diagonal
+    winner = check_horizontal(winner)
+    winner = check_vertical(winner)
+    winner = check_diagonal(winner)
+    return winner
     
   end
 
   private
-  def check_horizontal
+  def check_horizontal(winner)
     3.times do |i|
         if cases[i][0].shape == " "
           next
@@ -31,10 +40,10 @@ class Board
           return cases[i][0].shape
         end
     end
-    return " "
+    return winner
   end
 
-  def check_vertical
+  def check_vertical(winner)
     
     3.times do |i|
       if cases[0][i].shape == " "
@@ -42,15 +51,15 @@ class Board
       end
       
       if (cases[0][i].shape == cases[1][i].shape) && (cases[1][i].shape == cases[2][i].shape) 
-        puts "les #{cases[i][0].shape} gagnent ligne n°#{i+1}."
-        return cases[i][0].shape
+        puts "les #{cases[0][i].shape} gagnent colonne n°#{i+1}."
+        return cases[0][i].shape
       end
-  end
-  return " "
+    end
+    return winner
   end
 
 
-  def check_diagonal
+  def check_diagonal(winner)
     
     diagonal = false
       if cases[1][1].shape == " "
@@ -71,8 +80,9 @@ class Board
         end
         diagonal = true
       end
+      puts
   
-  return diagonal ? cases[1][1].shape : " "
+  return diagonal ? cases[1][1].shape : winner
   end
 
 

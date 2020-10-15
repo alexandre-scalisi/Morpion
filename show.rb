@@ -1,13 +1,13 @@
 class Show
 
-  attr_accessor :board
   def initialize(board)
     @board = board
   end
 
   def show_board
     
-    puts
+    puts "Voici le board"
+    puts 
     3.times do |i|
       puts " -----------" + " "*10 + "  --------------"
       3.times do |j|
@@ -15,12 +15,12 @@ class Show
       end
       print "|" + " "*10
       3.times do |j|
-        print  "| #{(i+65).chr}#{(j+49).chr} "
+        print  "| #{@board.cases[i][j].name} "
       end
       puts "|"
       
-    en
+    end
     puts " -----------" + " "*10 + "  --------------"
-    
+    puts
   end
 end

@@ -1,10 +1,23 @@
 class Player
 
-  attr_reader :shape, :name
-  def initialize(name,shape)
+  attr_reader :name
+  attr_accessor :shape
+  def initialize(name)
     @name = name
     @points = 0
-    @shape = shape
 
   end
+
+  def shape=(forme)
+    if @shape.nil?
+   @shape = forme
+    else
+    puts "Forme déja choisie"
+    end
+  end
+
+  def reinitialiser_forme
+    @shape = nil
+  end
+
 end

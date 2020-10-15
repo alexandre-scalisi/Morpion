@@ -7,5 +7,13 @@ require_relative 'lib/case'
 require_relative 'lib/game'
 require_relative 'show.rb'
 
-game1 = Game.new()
-binding.pry
+class Application
+
+  def initialize
+    Game.new
+  end
+end
+
+
+app = Application.new
+

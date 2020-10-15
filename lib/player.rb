@@ -1,18 +1,17 @@
-class Player
+# frozen_string_literal: true
 
-  attr_reader :name
-  attr_accessor :shape
+class Player
+  attr_reader :name, :points, :shape
   def initialize(name)
     @name = name
     @points = 0
-
   end
 
   def shape=(forme)
     if @shape.nil?
-   @shape = forme
+      @shape = forme
     else
-    puts "Forme déja choisie"
+      puts 'Forme déja choisie'
     end
   end
 
@@ -20,4 +19,8 @@ class Player
     @shape = nil
   end
 
+  def win
+    puts "#{@name} a gagné la partie"
+    @points += 1
+  end
 end
